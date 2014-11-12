@@ -1,0 +1,68 @@
+* {
+	font-family: 'Segoe UI', sans-serif;
+}
+
+h1 {
+	text-align: center;
+}
+
+label {
+	float: left;
+}
+
+label.check-label {
+	float: right;
+}
+
+select, input, textarea {
+	width: 100%;
+}
+
+input[type="checkbox"] {
+	width: auto;
+	float: left;
+}
+
+span.right-item {
+	float: right;
+	color: #29ABE2;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+button.main-submit {
+	border: 0;
+	background-color: black;
+	color: white;
+	width: 10em;
+	font-size: 2em;
+	margin-top: 3%;
+}
+
+button.main-submit:active {
+	color: black;
+	background-color: white;
+	border: 3px solid black;
+}
+
+.center {
+    margin:  0 auto;
+    width: 40%;
+    text-align: center;
+}
+
+section {
+	display: inline-block;
+	width: 100%;
+}
+
+section.left-side {
+    float: left;
+    width: 40%;
+    margin-left: 5%;
+    margin-top: 2%;
+}
+
+section.right-side {
+    float: right;  width: 40%;  margin-right: 5%;  margin-top: 2%;
+}

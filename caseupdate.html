@@ -1,0 +1,79 @@
+<!doctype html>
+<html ng-app="cprbApp">
+<head>
+	<title>Input data for the CPRB Tracker</title>
+	<script src="lib/angular.min.js"></script>
+	<script src="js/controllers.js"></script>
+	<script src="js/services.js"></script>
+	<link href="css/main.css" rel="stylesheet" type="text/css">
+</head>
+<body ng-controller="AddCaseCtrl">
+	<h1>Case Update</h1>
+	<div class="center">
+		<label>Case Number</label>
+		<input ng-model="caseNumber" ng-disabled="caseLoading" ng-model-options="{ updateOn: 'default blur', debounce: { default: 1000, blur: 0 } }" ng-change="onCaseChange()">
+	</div>
+	<section class="left-side" ng-show="(caseUpdate || newCase) && !caseLoading">
+		<!-- Board Hearing Date -->
+		<section ng-if="caseUpdate">
+			<label>Board Hearing Date</label>
+			<input type="date" ng-model="boardHearingDate" />
+		</section>
+		<section>
+			<label>Recommendation</label>
+			<span class="right-item" ng-click="newRecommendation()">Add New</span>
+			<select ng-options="recommendation.RecommendationId as recommendation.RecommendationText for recommendation in recommendations"
+					ng-model="caseRecommendation">
+		</section>
+		<section>
+			<label>Rationale</label>
+			<span class="right-item" ng-click="newRationale()">Add New</span>
+			<select ng-options="rationale.RationaleId as rationale.RationaleText for rationale in rationales"
+					ng-model="newRationale">
+			</select>
+		</section>
+		<section>
+			<label>Aside Text</label>
+			<textarea ng-model="asideText"></textarea>
+		</section>
+		<section>
+			<input type="checkbox" ng-model="hasRuling">
+			<label>Ruling?</label>
+			<section ng-show="hasRuling">
+				<input type="number" class="small-input" ng-model="leftRuling" /> - <input type="number" class="small-input" ng-model="rightRuling" />
+			</section>
+			<label ng-show="hasRuling">Name One</label>
+			<input ng-show="hasRuling" type="text" ng-model="nameOne" />
+			<label ng-show="hasRuling">Name Two</label>
+			<input ng-show="hasRuling" type="text" ng-model="nameTwo" />
+		</section>
+	</section>
+	<section class="right-side" ng-show="(caseUpdate || newCase) && !caseLoading">
+		<section>
+			<label>Date Issued</label>
+			<input ng-disabled="caseUpdate" ng-model="issuedDate" type="date" />
+		</section>
+		<section>
+			<label>Summary Text</label>
+			<textarea ng-disabled="caseUpdate" ng-model="summaryText"></textarea>
+		</section>
+		<section>
+			<label>Investigators</label>
+			<span class="right-item" ng-click="newInvestigator()" ng-show="newCase">Add New</span>
+			<select multiple ng-options="investigator.InvestigatorId as investigator.InvestigatorLastName for investigator in investigators"
+					ng-model="caseInvestigators" ng-disabled="caseUpdate">
+			</select>
+		</section>
+		<section>
+			<label>Allegations</label>
+			<span class="right-item" ng-click="newAllegation()" ng-show="newCase">Add New</span>
+			<select multiple ng-options="allegation.AllegationId as allegation.AllegationText for allegation in allegations"
+					ng-model="caseAllegations" ng-disabled="caseUpdate">
+			</select>
+		</section>
+	</section>
+	<div class="center">
+		<button class="main-submit">Save Case</button>
+	</div>
+</body>
+</html>
